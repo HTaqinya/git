@@ -14,6 +14,8 @@ public class GewinnController {
 
         view.getNochEinmalButton().addActionListener(e -> nochEinmal());
 
+        view.getNochEinmalButton().setEnabled(false);
+
         view.setVisible(true);
     }
 
@@ -45,6 +47,7 @@ public class GewinnController {
         view.getComputerZahlFeld().setText(String.valueOf(model.getComputerZahl()));
         view.getGesamtPunkteLabel().setText(String.valueOf(model.getGesamtPunkte()));
 
+
         if (model.hatVerloren()) {
             view.getRundenErgebnisLabel().setText("Verloren");
             view.getSpielerZahlFeld().setEnabled(false);
@@ -56,6 +59,8 @@ public class GewinnController {
             String vorzeichen = ergebnis >= 0 ? "+" : "";
             view.getRundenErgebnisLabel().setText(vorzeichen + ergebnis);
         }
+        view.getSpielerZahlFeld().setEnabled(false);
+        view.getNochEinmalButton().setEnabled(true);
     }
 
     private void nochEinmal() {
@@ -63,6 +68,10 @@ public class GewinnController {
         view.getComputerZahlFeld().setText("");
         view.getRundenErgebnisLabel().setText("Tippe eine Zahl von 1 bis 9");
         view.getGesamtPunkteLabel().setText("Gesamtpunkte: " + model.getGesamtPunkte());
+
+        view.getSpielerZahlFeld().setEnabled(true);
+        view.getNochEinmalButton().setEnabled(false);
+
         view.getSpielerZahlFeld().requestFocusInWindow();
     }
 }
