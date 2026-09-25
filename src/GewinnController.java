@@ -1,5 +1,6 @@
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GewinnController {
 
@@ -46,6 +47,22 @@ public class GewinnController {
 
         view.getComputerZahlFeld().setText(String.valueOf(model.getComputerZahl()));
         view.getGesamtPunkteLabel().setText(String.valueOf(model.getGesamtPunkte()));
+
+        Color farbe;
+        if (model.hatVerloren()) {
+            view.getRundenErgebnisLabel().setText("Verloren");
+            farbe = Color.RED;
+        } else if (model.hatGewonnen()) {
+            view.getRundenErgebnisLabel().setText("Gewonnen");
+            farbe = Color.GREEN;
+        } else {
+            int ergebnis = model.getRundenErgebnis();
+            String vorzeichen = ergebnis >= 0 ? "+" : "";
+            view.getRundenErgebnisLabel().setText(vorzeichen + ergebnis);
+            farbe = ergebnis > 0 ? Color.GREEN : (ergebnis < 0 ? Color.RED : Color.WHITE);
+        }
+        view.getRundenErgebnisLabel().setBackground(farbe);
+        view.getGesamtPunkteLabel().setBackground(farbe);
 
 
         if (model.hatVerloren()) {
