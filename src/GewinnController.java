@@ -64,6 +64,9 @@ public class GewinnController {
         view.getRundenErgebnisLabel().setBackground(farbe);
         view.getGesamtPunkteLabel().setBackground(farbe);
 
+        view.getSpielerZahlFeld().setEnabled(false);
+        view.getNochEinmalButton().setEnabled(true);
+
 
         if (model.hatVerloren()) {
             view.getRundenErgebnisLabel().setText("Verloren");
@@ -76,8 +79,7 @@ public class GewinnController {
             String vorzeichen = ergebnis >= 0 ? "+" : "";
             view.getRundenErgebnisLabel().setText(vorzeichen + ergebnis);
         }
-        view.getSpielerZahlFeld().setEnabled(false);
-        view.getNochEinmalButton().setEnabled(true);
+
     }
 
     private void nochEinmal() {
